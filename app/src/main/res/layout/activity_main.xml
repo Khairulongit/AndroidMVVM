@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="myViewModel"
+            type="com.tdmvvm.myapplication.db.SubscriverVIewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <EditText
+            android:id="@+id/etname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:text="@={myViewModel.inputname}"
+            android:hint="Subscriber_Name"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toTopOf="@+id/etemail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.7" />
+
+        <EditText
+            android:id="@+id/etemail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="E Mail"
+            android:text="@={myViewModel.inputemail}"
+            android:inputType="textEmailAddress"
+            app:layout_constraintBottom_toTopOf="@+id/btclearall"
+            app:layout_constraintEnd_toEndOf="@+id/etname"
+            app:layout_constraintStart_toStartOf="@+id/etname" />
+
+        <Button
+            android:id="@+id/btsave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@={myViewModel.saveorUpdateButtonText}"
+            app:layout_constraintBottom_toBottomOf="@+id/btclearall"
+            app:layout_constraintEnd_toStartOf="@+id/btclearall"
+            app:layout_constraintHorizontal_bias="0.5"
+            android:onClick="@{()->myViewModel.saveOrupdate()}"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etemail"
+            app:layout_constraintVertical_bias="0.13" />
+
+        <Button
+            android:id="@+id/btclearall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@={myViewModel.clearAllorDeleteButtonText}"
+            android:onClick="@{()->myViewModel.clearAllorDelete()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btsave"
+            app:layout_constraintTop_toBottomOf="@+id/etemail" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recylerview"
+            tools:listitem="@layout/list_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/btclearall" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+</layout>
